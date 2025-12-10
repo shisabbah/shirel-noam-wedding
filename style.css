@@ -6,7 +6,11 @@
 
 body {
     font-family: 'Georgia', 'Times New Roman', serif;
-    background: linear-gradient(135deg, #faf8f3 0%, #f5f1e8 50%, #faf8f3 100%);
+    background-image: url('fond.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -49,7 +53,11 @@ body {
 @media (max-width: 768px) {
     body {
         padding: 0;
-        background: transparent;
+        background-image: url('fond.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
         min-height: 100vh;
         height: 100vh;
         overflow: hidden;
