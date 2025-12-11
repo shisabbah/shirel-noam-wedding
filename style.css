@@ -4,97 +4,34 @@
     box-sizing: border-box;
 }
 
-html {
-    height: 100%;
-}
-
 body {
-    font-family: 'Georgia', 'Times New Roman', serif;
-    background-image: url('./fond.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    min-height: 100vh;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: white;
 }
 
-.container {
-    max-width: 100%;
+.scroll-container {
+    width: 100%;
+    position: relative;
+    overflow-y: auto;
+}
+
+.image-wrapper {
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+    flex-direction: column;
 }
 
-.image-link {
-    display: block;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(184, 134, 11, 0.15);
-}
-
-.image-link:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 30px rgba(184, 134, 11, 0.25);
-}
-
-.main-image {
-    max-width: 100%;
+.overlay-image {
+    width: 100%;
     height: auto;
     display: block;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(184, 134, 11, 0.15);
 }
 
-/* Responsive pour mobile */
+/* Responsive */
 @media (max-width: 768px) {
-    body {
-        padding: 0;
-        background-image: url('./fond.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: scroll;
-        min-height: 100vh;
-        height: 100vh;
-        overflow: hidden;
-    }
-    
-    .container {
-        height: 100vh;
+    .overlay-image {
         width: 100vw;
-        padding: 0;
-    }
-    
-    .image-link {
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-        box-shadow: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .image-link:hover {
-        transform: none;
-        box-shadow: none;
-    }
-    
-    .main-image {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        border-radius: 0;
-        box-shadow: none;
     }
 }
-
