@@ -7,12 +7,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="scroll-container">
+    <div class="first-page" id="firstPage">
+        <img src="part1.png" alt="Partie 1" class="fullscreen-image clickable" id="part1">
+    </div>
+    <div class="scroll-container hidden" id="scrollContainer">
         <div class="image-wrapper">
-            <img src="part1.png" alt="Partie 1" class="overlay-image image-1">
-            <img src="part2.png" alt="Partie 2" class="overlay-image image-2">
-            <img src="part3.png" alt="Partie 3" class="overlay-image image-3">
+            <img src="part2.png" alt="Partie 2" class="scroll-image">
+            <img src="part3.png" alt="Partie 3" class="scroll-image">
         </div>
     </div>
+    <script>
+        const part1 = document.getElementById('part1');
+        const firstPage = document.getElementById('firstPage');
+        const scrollContainer = document.getElementById('scrollContainer');
+
+        part1.addEventListener('click', function() {
+            firstPage.classList.add('hidden');
+            scrollContainer.classList.remove('hidden');
+            document.body.style.overflow = 'auto';
+        });
+    </script>
 </body>
 </html>
