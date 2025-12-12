@@ -48,6 +48,8 @@ html, body {
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    perspective: 2000px;
+    background: #2c2c2c;
 }
 
 .image-wrapper {
@@ -57,15 +59,19 @@ html, body {
 }
 
 .scroll-image {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     height: 100dvh;
     object-fit: contain;
+    object-position: center;
     display: block;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     flex-shrink: 0;
-    background: #fdfaf7;
+    position: relative;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    background: #f5f0e8;
+    margin: 0 auto;
 }
 
 .hidden {
@@ -92,19 +98,22 @@ html, body {
         max-width: 100vw;
         max-height: 100dvh;
         object-fit: cover;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
     }
     
     .scroll-container {
         height: 100vh;
         height: 100dvh;
+        perspective: 1500px;
     }
     
     .scroll-image {
-        width: 100%;
+        width: 100vw;
         height: 100vh;
         height: 100dvh;
         object-fit: contain;
-        background: #fdfaf7;
+        object-position: center;
+        background: #f5f0e8;
     }
 }
 
@@ -123,18 +132,21 @@ html, body {
         max-width: 100vw;
         max-height: 100dvh;
         object-fit: cover;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
     }
     
     .scroll-container {
         height: 100vh;
         height: 100dvh;
+        perspective: 1500px;
     }
     
     .scroll-image {
-        width: 100%;
+        width: 100vw;
         height: 100vh;
         height: 100dvh;
         object-fit: contain;
-        background: #fdfaf7;
+        object-position: center;
+        background: #f5f0e8;
     }
 }
