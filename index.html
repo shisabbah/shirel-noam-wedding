@@ -22,13 +22,41 @@
         const part1 = document.getElementById('part1');
         const firstPage = document.getElementById('firstPage');
         const scrollContainer = document.getElementById('scrollContainer');
+        const scrollImages = document.querySelectorAll('.scroll-image');
 
         part1.addEventListener('click', function() {
-            firstPage.classList.add('hidden');
-            scrollContainer.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            // Scroll vers le haut pour commencer à la première page
-            scrollContainer.scrollTo(0, 0);
+            firstPage.style.opacity = '0';
+            firstPage.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                firstPage.classList.add('hidden');
+                scrollContainer.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                scrollContainer.scrollTo(0, 0);
+            }, 300);
+        });
+
+        // Animation au scroll
+        let lastScrollTop = 0;
+        scrollContainer.addEventListener('scroll', function() {
+            const scrollTop = scrollContainer.scrollTop;
+            const windowHeight = window.innerHeight;
+            
+            scrollImages.forEach((img, index) => {
+                const rect = img.getBoundingClientRect();
+                const isVisible = rect.top < windowHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    const progress = Math.min(1, Math.max(0, (windowHeight - rect.top) / windowHeight));
+                    const scale = 0.98 + (progress * 0.02);
+                    const shadowIntensity = progress * 0.3;
+                    
+                    img.style.transform = `scale(${scale})`;
+                    img.style.boxShadow = `0 ${10 + progress * 20}px ${40 + progress * 20}px rgba(0, 0, 0, ${0.15 + shadowIntensity}), 
+                                           0 0 0 1px rgba(0, 0, 0, ${0.05 + progress * 0.05})`;
+                }
+            });
+            
+            lastScrollTop = scrollTop;
         });
     </script>
 </body>
