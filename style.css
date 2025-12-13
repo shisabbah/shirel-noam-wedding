@@ -59,11 +59,9 @@ html, body {
 }
 
 .scroll-image {
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh;
-    object-fit: contain;
-    object-position: center;
+    width: 100%;
+    height: auto;
+    max-width: 100vw;
     display: block;
     scroll-snap-align: start;
     scroll-snap-stop: always;
@@ -72,6 +70,8 @@ html, body {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     background: #f5f0e8;
     margin: 0 auto;
+    min-height: 100vh;
+    min-height: 100dvh;
 }
 
 .hidden {
@@ -108,12 +108,12 @@ html, body {
     }
     
     .scroll-image {
-        width: 100vw;
-        height: 100vh;
-        height: 100dvh;
-        object-fit: contain;
-        object-position: center;
+        width: 100%;
+        height: auto;
+        max-width: 100vw;
         background: #f5f0e8;
+        min-height: 100vh;
+        min-height: 100dvh;
     }
 }
 
@@ -142,11 +142,11 @@ html, body {
     }
     
     .scroll-image {
-        width: 100vw;
-        height: 100vh;
-        height: 100dvh;
-        object-fit: contain;
-        object-position: center;
+        width: 100%;
+        height: auto;
+        max-width: 100vw;
         background: #f5f0e8;
+        min-height: 100vh;
+        min-height: 100dvh;
     }
 }
