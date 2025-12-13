@@ -137,9 +137,13 @@ html, body {
     }
 
     .first-page .fullscreen-image {
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: auto;
+        max-width: 100vw;
+        max-height: 100vh;
+        max-height: 100dvh;
         object-fit: contain;
+        object-position: center;
     }
     
     .scroll-container {
@@ -149,9 +153,12 @@ html, body {
     
     .scroll-image {
         width: 100vw;
-        height: 100vh;
-        height: 100dvh;
+        height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+        max-width: 100vw;
         object-fit: contain;
+        object-position: center;
     }
 }
 
@@ -162,9 +169,13 @@ html, body {
     }
 
     .first-page .fullscreen-image {
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: auto;
+        max-width: 100vw;
+        max-height: 100vh;
+        max-height: 100dvh;
         object-fit: contain;
+        object-position: center;
     }
     
     .scroll-container {
@@ -174,8 +185,11 @@ html, body {
     
     .scroll-image {
         width: 100vw;
-        height: 100vh;
-        height: 100dvh;
+        height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+        max-width: 100vw;
         object-fit: contain;
+        object-position: center;
     }
 }
