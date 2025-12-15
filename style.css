@@ -72,9 +72,10 @@ html, body {
 
 .scroll-image {
     width: 100vw;
-    height: 100vh;
-    height: 100dvh;
-    object-fit: cover;
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    object-fit: contain;
     object-position: center;
     display: block;
     background: #000;
@@ -144,9 +145,10 @@ html, body {
     
     .scroll-image {
         width: 100vw;
-        height: 100vh;
-        height: 100dvh;
-        object-fit: cover;
+        height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+        object-fit: contain;
         object-position: center;
         margin: 0;
     }
@@ -176,9 +178,10 @@ html, body {
     
     .scroll-image {
         width: 100vw;
-        height: 100vh;
-        height: 100dvh;
-        object-fit: cover;
+        height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+        object-fit: contain;
         object-position: center;
         margin: 0;
     }
