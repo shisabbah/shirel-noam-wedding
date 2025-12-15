@@ -22,18 +22,25 @@
         <img src="new-accueil.png" alt="Accueil" class="fullscreen-image clickable" id="part1">
     </div>
     <div class="scroll-container hidden" id="scrollContainer">
+        <button class="nav-button nav-prev" id="prevPage" aria-label="Page précédente">‹</button>
         <div class="image-wrapper">
-            <img src="mairie.png" alt="Mairie" class="scroll-image">
+            <img src="mairie.png" alt="Mairie" class="scroll-image active">
             <img src="henne.png" alt="Henne" class="scroll-image">
             <img src="houppa.png" alt="Houppa" class="scroll-image">
             <img src="form.png" alt="Formulaire" class="scroll-image">
         </div>
+        <button class="nav-button nav-next" id="nextPage" aria-label="Page suivante">›</button>
+        <div class="page-indicator" id="pageIndicator">1 / 4</div>
     </div>
     <script>
         const part1 = document.getElementById('part1');
         const firstPage = document.getElementById('firstPage');
         const scrollContainer = document.getElementById('scrollContainer');
-        const scrollImages = document.querySelectorAll('.scroll-image');
+        const scrollImages = Array.from(document.querySelectorAll('.scroll-image'));
+        const prevPageBtn = document.getElementById('prevPage');
+        const nextPageBtn = document.getElementById('nextPage');
+        const pageIndicator = document.getElementById('pageIndicator');
+        let currentIndex = 0;
 
         part1.addEventListener('click', function() {
             firstPage.style.opacity = '0';
@@ -41,34 +48,62 @@
             setTimeout(() => {
                 firstPage.classList.add('hidden');
                 scrollContainer.classList.remove('hidden');
-                document.body.style.overflow = 'auto';
-                scrollContainer.scrollTo(0, 0);
+                document.body.style.overflow = 'hidden';
             }, 300);
         });
 
-        // Animation au scroll
-        let lastScrollTop = 0;
-        scrollContainer.addEventListener('scroll', function() {
-            const scrollTop = scrollContainer.scrollTop;
-            const windowHeight = window.innerHeight;
-            
+        function updatePages(direction) {
             scrollImages.forEach((img, index) => {
-                const rect = img.getBoundingClientRect();
-                const isVisible = rect.top < windowHeight && rect.bottom > 0;
-                
-                if (isVisible) {
-                    const progress = Math.min(1, Math.max(0, (windowHeight - rect.top) / windowHeight));
-                    const scale = 0.98 + (progress * 0.02);
-                    const shadowIntensity = progress * 0.3;
-                    
-                    img.style.transform = `scale(${scale})`;
-                    img.style.boxShadow = `0 ${10 + progress * 20}px ${40 + progress * 20}px rgba(0, 0, 0, ${0.15 + shadowIntensity}), 
-                                           0 0 0 1px rgba(0, 0, 0, ${0.05 + progress * 0.05})`;
+                img.classList.remove('active', 'from-left', 'from-right');
+                if (index === currentIndex) {
+                    img.classList.add('active');
+                    if (direction === 'next') img.classList.add('from-right');
+                    if (direction === 'prev') img.classList.add('from-left');
                 }
             });
-            
-            lastScrollTop = scrollTop;
+            if (pageIndicator) {
+                pageIndicator.textContent = (currentIndex + 1) + ' / ' + scrollImages.length;
+            }
+            if (prevPageBtn && nextPageBtn) {
+                prevPageBtn.disabled = currentIndex === 0;
+                nextPageBtn.disabled = currentIndex === scrollImages.length - 1;
+            }
+        }
+
+        if (prevPageBtn && nextPageBtn) {
+            prevPageBtn.addEventListener('click', function () {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updatePages('prev');
+                }
+            });
+
+            nextPageBtn.addEventListener('click', function () {
+                if (currentIndex < scrollImages.length - 1) {
+                    currentIndex++;
+                    updatePages('next');
+                }
+            });
+        }
+
+        // Navigation clavier (flèches)
+        document.addEventListener('keydown', function (e) {
+            if (scrollContainer.classList.contains('hidden')) return;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                if (currentIndex < scrollImages.length - 1) {
+                    currentIndex++;
+                    updatePages('next');
+                }
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updatePages('prev');
+                }
+            }
         });
+
+        // Initialisation
+        updatePages();
     </script>
 </body>
 </html>
