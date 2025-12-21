@@ -27,7 +27,40 @@
             <img src="mairie.png" alt="Mairie" class="scroll-image active">
             <img src="henne.png" alt="Henne" class="scroll-image">
             <img src="houppa.png" alt="Houppa" class="scroll-image">
-            <img src="form.png" alt="Formulaire" class="scroll-image">
+            <div class="scroll-image form-container" style="background-image: url('form.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+                <form class="wedding-form" id="weddingForm">
+                    <h2 class="form-title">Répondez à l'invitation</h2>
+                    
+                    <div class="form-group">
+                        <label for="prenom">Prénom</label>
+                        <input type="text" id="prenom" name="prenom" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nom">Nom</label>
+                        <input type="text" id="nom" name="nom" required>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <div class="checkboxes">
+                            <div class="event-item">
+                                <label for="nb_mairie" class="event-title">Mairie</label>
+                                <input type="number" name="nb_mairie" id="nb_mairie" min="0" value="0" class="event-number">
+                            </div>
+                            <div class="event-item">
+                                <label for="nb_henne" class="event-title">Henné</label>
+                                <input type="number" name="nb_henne" id="nb_henne" min="0" value="0" class="event-number">
+                            </div>
+                            <div class="event-item">
+                                <label for="nb_mariage" class="event-title">Mariage</label>
+                                <input type="number" name="nb_mariage" id="nb_mariage" min="0" value="0" class="event-number">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Envoyer</button>
+                </form>
+            </div>
         </div>
         <button class="nav-button nav-next" id="nextPage" aria-label="Page suivante">›</button>
         <div class="page-indicator" id="pageIndicator">1 / 4</div>
@@ -104,6 +137,22 @@
 
         // Initialisation
         updatePages();
+
+        // Gestion du formulaire
+        const weddingForm = document.getElementById('weddingForm');
+        if (weddingForm) {
+            weddingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(weddingForm);
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+                console.log('Données du formulaire:', data);
+                alert('Merci pour votre réponse ! Nous avons bien reçu votre confirmation.');
+                // Ici tu peux ajouter l'envoi des données à un serveur
+            });
+        }
     </script>
 </body>
 </html>
