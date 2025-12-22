@@ -159,27 +159,37 @@
                 submitBtn.textContent = 'Envoi en cours...';
                 
                 try {
-                    // Utiliser mode: 'no-cors' pour éviter les problèmes CORS
-                    // Note: avec no-cors, on ne peut pas lire la réponse, mais les données sont bien envoyées
-                    await fetch('https://script.google.com/macros/s/AKfycbxTsDV80MebyQBUZLiAXJU5rUTQtfcMes2rCfmbdvxYhc7ldIpuUSrzdH6Fn6FI2-jKkQ/exec', {
+                    // URL du script Google Apps Script
+                    const scriptUrl = 'https://script.google.com/macros/s/AKfycbydj05h9Gf7ngokwVnlgSbFeuL8CL-vvuvkROSBsegLHyqduAMFxjOExfWK6-hO7X9EYw/exec';
+                    
+                    // Envoyer les données au script Google Apps Script
+                    const response = await fetch(scriptUrl, {
                         method: 'POST',
-                        mode: 'no-cors',
+                        mode: 'no-cors', // Google Apps Script nécessite no-cors pour les requêtes publiques
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
                         },
                         body: new URLSearchParams(obj)
                     });
                     
-                    // Avec no-cors, on assume le succès car on ne peut pas lire la réponse
-                    alert('Merci ! Votre réponse a été enregistrée.');
+                    // Note: Avec mode 'no-cors', on ne peut pas lire la réponse HTTP
+                    // Mais si la requête est envoyée sans erreur, on considère que c'est un succès
+                    // Le script Google Apps Script enregistrera les données dans Sheets
+                    
+                    // Attendre un court délai pour laisser le temps au script de traiter
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    
+                    // Afficher le message de succès
+                    alert('Merci ! Votre réponse a été enregistrée avec succès.');
                     weddingForm.reset();
                     // Réinitialiser les valeurs à 0
                     if (nbMairie) nbMairie.value = 0;
                     if (nbHenne) nbHenne.value = 0;
                     if (nbMariage) nbMariage.value = 0;
                 } catch (err) {
-                    alert('Impossible de se connecter au serveur.');
-                    console.error('Erreur:', err);
+                    // En cas d'erreur réseau ou autre
+                    console.error('Erreur lors de l\'envoi:', err);
+                    alert('Erreur : Impossible d\'envoyer les données. Veuillez vérifier votre connexion internet et réessayer.\n\nSi le problème persiste, vérifiez la configuration du script Google Apps Script.');
                 } finally {
                     submitBtn.disabled = false;
                     submitBtn.textContent = originalText;
