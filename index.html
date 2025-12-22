@@ -45,15 +45,15 @@
                         <div class="checkboxes">
                             <div class="event-item">
                                 <label for="nb_mairie" class="event-title">Mairie</label>
-                                <input type="number" name="nb_mairie" id="nb_mairie" min="0" max="10" value="0" class="event-number">
+                                <input type="number" name="nb_mairie" id="nb_mairie" min="0" value="0" class="event-number">
                             </div>
                             <div class="event-item">
                                 <label for="nb_henne" class="event-title">Henné</label>
-                                <input type="number" name="nb_henne" id="nb_henne" min="0" max="10" value="0" class="event-number">
+                                <input type="number" name="nb_henne" id="nb_henne" min="0" value="0" class="event-number">
                             </div>
                             <div class="event-item">
                                 <label for="nb_mariage" class="event-title">Mariage</label>
-                                <input type="number" name="nb_mariage" id="nb_mariage" min="0" max="10" value="0" class="event-number">
+                                <input type="number" name="nb_mariage" id="nb_mariage" min="0" value="0" class="event-number">
                             </div>
                         </div>
                     </div>
@@ -141,51 +141,12 @@
         // Gestion du formulaire
         const weddingForm = document.getElementById('weddingForm');
         if (weddingForm) {
-            // Limiter les valeurs des champs nombre
             const nbMairie = document.getElementById('nb_mairie');
             const nbHenne = document.getElementById('nb_henne');
             const nbMariage = document.getElementById('nb_mariage');
             
-            function limitNumber(input, max) {
-                input.addEventListener('input', function() {
-                    if (this.value > max) {
-                        this.value = max;
-                        alert('Le nombre maximum de personnes est de ' + max);
-                    }
-                });
-                input.addEventListener('change', function() {
-                    if (this.value > max) {
-                        this.value = max;
-                    }
-                });
-            }
-            
-            if (nbMairie) limitNumber(nbMairie, 10);
-            if (nbHenne) limitNumber(nbHenne, 10);
-            if (nbMariage) limitNumber(nbMariage, 10);
-            
             weddingForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                
-                // Vérification finale des limites
-                let isValid = true;
-                if (nbMairie && parseInt(nbMairie.value) > 10) {
-                    nbMairie.value = 10;
-                    isValid = false;
-                }
-                if (nbHenne && parseInt(nbHenne.value) > 10) {
-                    nbHenne.value = 10;
-                    isValid = false;
-                }
-                if (nbMariage && parseInt(nbMariage.value) > 10) {
-                    nbMariage.value = 10;
-                    isValid = false;
-                }
-                
-                if (!isValid) {
-                    alert('Le nombre maximum de personnes par événement est de 10.');
-                    return;
-                }
                 
                 const formData = new FormData(weddingForm);
                 const data = {};
