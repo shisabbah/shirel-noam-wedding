@@ -3,13 +3,9 @@
 
 function doPost(e) {
   try {
-    // Récupérer la feuille Google Sheets
-    // Option 1 : Si le script est lié à une feuille (créé depuis Google Sheets)
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sheet1");
-    
-    // Option 2 : Si vous préférez utiliser un ID spécifique, décommentez ces lignes :
-    // const SHEET_ID = 'VOTRE_ID_DE_FEUILLE'; // Remplacez par l'ID de votre Google Sheet
-    // const sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName("Sheet1");
+    // ID de votre Google Sheet
+    const SHEET_ID = '1KX6b6y8lmXKi-L_zIEFjB_SbCBJ4z7ibJj8gxUoPgmw';
+    const sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName("Sheet1");
     
     // Récupérer les paramètres envoyés
     const params = e.parameter;
