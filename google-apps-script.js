@@ -1,10 +1,10 @@
 function doPost(e) {
     try {
-      // ID de votre Google Sheet - REMPLACEZ PAR VOTRE ID
+      // ID de votre Google Sheet
       const SHEET_ID = '1KX6b6y8lmXKi-L_zIEFjB_SbCBJ4z7ibJj8gxUoPgmw';
       
-      // Vérifier que l'ID est présent
-      if (!SHEET_ID || SHEET_ID === '1KX6b6y8lmXKi-L_zIEFjB_SbCBJ4z7ibJj8gxUoPgmw') {
+      // Vérifier que l'ID est présent et valide
+      if (!SHEET_ID || SHEET_ID === 'VOTRE_ID_ICI' || SHEET_ID.trim() === '') {
         throw new Error('ID de Google Sheet non configuré. Veuillez remplacer SHEET_ID dans le script.');
       }
       
