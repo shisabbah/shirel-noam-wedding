@@ -26,23 +26,26 @@ function doPost(e) {
     ]);
     
     // Retourner une réponse de succès
-    return ContentService.createTextOutput(JSON.stringify({status: "success"}))
+    return ContentService
+      .createTextOutput(JSON.stringify({status: "success"}))
       .setMimeType(ContentService.MimeType.JSON);
       
   } catch (error) {
     // En cas d'erreur, logger et retourner une erreur
     Logger.log('Erreur: ' + error.toString());
-    return ContentService.createTextOutput(JSON.stringify({
-      status: "error",
-      message: error.toString()
-    }))
-    .setMimeType(ContentService.MimeType.JSON);
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        status: "error",
+        message: error.toString()
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
   }
 }
 
 // Fonction optionnelle pour tester (GET request)
 function doGet(e) {
-  return ContentService.createTextOutput('Le script fonctionne ! Utilisez POST pour envoyer des données.')
+  return ContentService
+    .createTextOutput('Le script fonctionne ! Utilisez POST pour envoyer des données.')
     .setMimeType(ContentService.MimeType.TEXT);
 }
 

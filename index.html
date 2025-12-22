@@ -141,6 +141,10 @@
         // Gestion du formulaire
         const weddingForm = document.getElementById('weddingForm');
         if (weddingForm) {
+            const nbMairie = document.getElementById('nb_mairie');
+            const nbHenne = document.getElementById('nb_henne');
+            const nbMariage = document.getElementById('nb_mariage');
+            
             weddingForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
 
@@ -148,21 +152,37 @@
                 const obj = {};
                 data.forEach((value, key) => obj[key] = value);
 
+                // Désactiver le bouton pendant l'envoi
+                const submitBtn = weddingForm.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Envoi en cours...';
+                
                 try {
-                    const response = await fetch('https://script.google.com/macros/s/AKfycbxTsDV80MebyQBUZLiAXJU5rUTQtfcMes2rCfmbdvxYhc7ldIpuUSrzdH6Fn6FI2-jKkQ/exec', {
+                    // Utiliser mode: 'no-cors' pour éviter les problèmes CORS
+                    // Note: avec no-cors, on ne peut pas lire la réponse, mais les données sont bien envoyées
+                    await fetch('https://script.google.com/macros/s/AKfycbxTsDV80MebyQBUZLiAXJU5rUTQtfcMes2rCfmbdvxYhc7ldIpuUSrzdH6Fn6FI2-jKkQ/exec', {
                         method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
                         body: new URLSearchParams(obj)
                     });
-                    const result = await response.json();
-                    if (result.status === 'success') {
-                        alert('Merci ! Votre réponse a été enregistrée.');
-                        weddingForm.reset();
-                    } else {
-                        alert('Erreur lors de l\'envoi. Réessayez.');
-                    }
+                    
+                    // Avec no-cors, on assume le succès car on ne peut pas lire la réponse
+                    alert('Merci ! Votre réponse a été enregistrée.');
+                    weddingForm.reset();
+                    // Réinitialiser les valeurs à 0
+                    if (nbMairie) nbMairie.value = 0;
+                    if (nbHenne) nbHenne.value = 0;
+                    if (nbMariage) nbMariage.value = 0;
                 } catch (err) {
                     alert('Impossible de se connecter au serveur.');
-                    console.error(err);
+                    console.error('Erreur:', err);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
                 }
             });
         }
