@@ -142,13 +142,13 @@
         // Initialisation
         updatePages();
 
-        // Après clic sur "Envoyer", on redirige vers la page de confirmation
+        // Après clic sur "Envoyer", on redirige vers la page de confirmation plein écran
         const submitBtn = document.querySelector('.submit-btn');
         if (submitBtn) {
             submitBtn.addEventListener('click', () => {
                 // Petit délai pour laisser l'envoi se faire vers Google Apps Script
                 setTimeout(() => {
-                    window.location.href = 'confirmation.png';
+                    window.location.href = 'confirmation.html';
                 }, 500);
             });
         }
