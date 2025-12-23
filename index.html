@@ -28,7 +28,12 @@
             <img src="henne.png" alt="Henne" class="scroll-image">
             <img src="houppa.png" alt="Houppa" class="scroll-image">
             <div class="scroll-image form-container" style="background-image: url('form.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
-                <form class="wedding-form" id="weddingForm">
+                <form
+                    class="wedding-form"
+                    method="POST"
+                    action="https://script.google.com/macros/s/AKfycby3v4vpL0UjqJSlQ3FqmYOl63Breg3NB_Tmxi8-CQ4gtUYTZja8kEOvUi2PWMMotpnFRA/exec"
+                    target="hidden_iframe"
+                    id="weddingForm">
                     <h2 class="form-title">Répondez à l'invitation</h2>
                     
                     <div class="form-group">
@@ -146,32 +151,15 @@
             const nbMariage = document.getElementById('nb_mariage');
             
             weddingForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("prenom", document.getElementById('prenom').value);
-    formData.append("nom", document.getElementById('nom').value);
-    formData.append("nb_mairie", document.getElementById('nb_mairie').value);
-    formData.append("nb_henne", document.getElementById('nb_henne').value);
-    formData.append("nb_mariage", document.getElementById('nb_mariage').value);
-
-    fetch("https://script.google.com/macros/s/AKfycby3v4vpL0UjqJSlQ3FqmYOl63Breg3NB_Tmxi8-CQ4gtUYTZja8kEOvUi2PWMMotpnFRA/exec", {
-        method: "POST",
-        body: formData
-    })
-    .then(() => {
-        alert("Merci 💕 Votre réponse a bien été enregistrée");
-        weddingForm.reset();
-        document.getElementById('nb_mairie').value = 0;
-        document.getElementById('nb_henne').value = 0;
-        document.getElementById('nb_mariage').value = 0;
-    })
-    .catch(() => {
-        alert("Erreur 😢 Merci de réessayer");
-    });
-});
+                alert("Merci 💕 Votre réponse a bien été enregistrée");
+                weddingForm.reset();
+                nbMairie.value = 0;
+                nbHenne.value = 0;
+                nbMariage.value = 0;
+            });
 
         }
     </script>
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
 </body>
 </html>
