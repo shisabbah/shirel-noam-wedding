@@ -18,9 +18,20 @@ html, body {
     width: 100%;
     min-height: 100vh;
     min-height: 100dvh;
+    min-height: 100svh;
     margin: 0;
-    background: #fdfaf7 url('confirmation.png') center center / contain no-repeat;
+    background: #fdfaf7 url('confirmation.png') center center / cover no-repeat;
     overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .confirmation-page {
+        min-height: 100vh;
+        min-height: 100dvh;
+        min-height: 100svh;
+        background-position: center center;
+        background-size: cover;
+    }
 }
 
 .first-page {
