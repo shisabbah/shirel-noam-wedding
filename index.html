@@ -149,7 +149,8 @@
 
         if (form && successOverlay) {
             form.addEventListener('submit', () => {
-                // Petit délai pour laisser l'envoi se faire
+                // Très petit délai pour laisser l'envoi se faire,
+                // mais que le reset soit quasi immédiat après le clic
                 setTimeout(() => {
                     // Remettre tous les champs à 0 / vide
                     form.reset();
@@ -161,7 +162,7 @@
                     if (nbMariage) nbMariage.value = 0;
 
                     successOverlay.style.display = 'flex';
-                }, 300);
+                }, 10);
             });
         }
 
