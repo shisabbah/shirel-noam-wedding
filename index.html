@@ -142,42 +142,17 @@
         // Initialisation
         updatePages();
 
-        // Message de confirmation après clic sur "Envoyer"
+        // Après clic sur "Envoyer", on redirige vers la page de confirmation
         const form = document.querySelector('.wedding-form');
-        const successOverlay = document.getElementById('successOverlay');
-        const successClose = document.getElementById('successClose');
-
-        if (form && successOverlay) {
+        if (form) {
             form.addEventListener('submit', () => {
-                // Très petit délai pour laisser l'envoi se faire,
-                // mais que le reset soit quasi immédiat après le clic
+                // Petit délai pour laisser l'envoi se faire vers Google Apps Script
                 setTimeout(() => {
-                    // Remettre tous les champs à 0 / vide
-                    form.reset();
-                    const nbMairie = document.getElementById('nb_mairie');
-                    const nbHenne = document.getElementById('nb_henne');
-                    const nbMariage = document.getElementById('nb_mariage');
-                    if (nbMairie) nbMairie.value = 0;
-                    if (nbHenne) nbHenne.value = 0;
-                    if (nbMariage) nbMariage.value = 0;
-
-                    successOverlay.style.display = 'flex';
-                }, 10);
-            });
-        }
-
-        if (successClose && successOverlay) {
-            successClose.addEventListener('click', () => {
-                successOverlay.style.display = 'none';
+                    window.location.href = 'confirmation.png';
+                }, 100);
             });
         }
     </script>
     <iframe name="hidden_iframe" style="display:none;"></iframe>
-    <div id="successOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); color:#fff; z-index:9999; align-items:center; justify-content:center; padding:20px; text-align:center;">
-        <div style="background:#222; padding:20px 24px; border-radius:10px; max-width:320px; width:100%; box-shadow:0 8px 20px rgba(0,0,0,0.4);">
-            <p style="margin:0 0 16px; font-size:18px; font-weight:600;">Merci pour votre réponse 💕</p>
-            <button id="successClose" style="padding:10px 16px; border:none; border-radius:6px; background:#f2c6d1; color:#222; font-weight:700; cursor:pointer; width:100%;">Fermer</button>
-        </div>
-    </div>
 </body>
 </html>
