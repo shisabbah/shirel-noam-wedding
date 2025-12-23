@@ -19,7 +19,7 @@ html, body {
     min-height: 100vh;
     min-height: 100dvh;
     margin: 0;
-    background: url('confirmation.png') center center / cover no-repeat #fdfaf7;
+    background: #fdfaf7 url('confirmation.png') center center / contain no-repeat;
     overflow: hidden;
 }
 
