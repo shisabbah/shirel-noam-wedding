@@ -32,8 +32,7 @@
                     class="wedding-form"
                     method="POST"
                     action="https://script.google.com/macros/s/AKfycby3v4vpL0UjqJSlQ3FqmYOl63Breg3NB_Tmxi8-CQ4gtUYTZja8kEOvUi2PWMMotpnFRA/exec"
-                    target="hidden_iframe"
-                    id="weddingForm">
+                    target="hidden_iframe">
                     <h2 class="form-title">Répondez à l'invitation</h2>
                     
                     <div class="form-group">
@@ -142,23 +141,6 @@
 
         // Initialisation
         updatePages();
-
-        // Gestion du formulaire
-        const weddingForm = document.getElementById('weddingForm');
-        if (weddingForm) {
-            const nbMairie = document.getElementById('nb_mairie');
-            const nbHenne = document.getElementById('nb_henne');
-            const nbMariage = document.getElementById('nb_mariage');
-            
-            weddingForm.addEventListener('submit', function(e) {
-                alert("Merci 💕 Votre réponse a bien été enregistrée");
-                weddingForm.reset();
-                nbMairie.value = 0;
-                nbHenne.value = 0;
-                nbMariage.value = 0;
-            });
-
-        }
     </script>
     <iframe name="hidden_iframe" style="display:none;"></iframe>
 </body>
