@@ -143,13 +143,13 @@
         updatePages();
 
         // Après clic sur "Envoyer", on redirige vers la page de confirmation
-        const form = document.querySelector('.wedding-form');
-        if (form) {
-            form.addEventListener('submit', () => {
+        const submitBtn = document.querySelector('.submit-btn');
+        if (submitBtn) {
+            submitBtn.addEventListener('click', () => {
                 // Petit délai pour laisser l'envoi se faire vers Google Apps Script
                 setTimeout(() => {
                     window.location.href = 'confirmation.png';
-                }, 100);
+                }, 500);
             });
         }
     </script>
