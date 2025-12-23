@@ -142,43 +142,31 @@
         // Initialisation
         updatePages();
 
-        // Message de confirmation après envoi du formulaire (via l'iframe caché)
-        const hiddenIframe = document.querySelector('iframe[name="hidden_iframe"]');
+        // Message de confirmation après clic sur "Envoyer"
+        const form = document.querySelector('.wedding-form');
         const successOverlay = document.getElementById('successOverlay');
         const successClose = document.getElementById('successClose');
 
-        let iframeFirstLoad = true;
-        if (hiddenIframe) {
-            hiddenIframe.addEventListener('load', function () {
-                // On ignore le tout premier chargement (about:blank)
-                if (iframeFirstLoad) {
-                    iframeFirstLoad = false;
-                    return;
-                }
-
-                const form = document.querySelector('.wedding-form');
-                if (form) {
+        if (form && successOverlay) {
+            form.addEventListener('submit', () => {
+                // Petit délai pour laisser l'envoi se faire
+                setTimeout(() => {
+                    // Remettre tous les champs à 0 / vide
                     form.reset();
-                }
+                    const nbMairie = document.getElementById('nb_mairie');
+                    const nbHenne = document.getElementById('nb_henne');
+                    const nbMariage = document.getElementById('nb_mariage');
+                    if (nbMairie) nbMairie.value = 0;
+                    if (nbHenne) nbHenne.value = 0;
+                    if (nbMariage) nbMariage.value = 0;
 
-                const nbMairie = document.getElementById('nb_mairie');
-                const nbHenne = document.getElementById('nb_henne');
-                const nbMariage = document.getElementById('nb_mariage');
-
-                if (nbMairie) nbMairie.value = 0;
-                if (nbHenne) nbHenne.value = 0;
-                if (nbMariage) nbMariage.value = 0;
-
-                if (successOverlay) {
                     successOverlay.style.display = 'flex';
-                } else {
-                    alert('Merci pour votre réponse 💕');
-                }
+                }, 300);
             });
         }
 
         if (successClose && successOverlay) {
-            successClose.addEventListener('click', function () {
+            successClose.addEventListener('click', () => {
                 successOverlay.style.display = 'none';
             });
         }
