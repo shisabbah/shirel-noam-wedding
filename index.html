@@ -141,6 +141,34 @@
 
         // Initialisation
         updatePages();
+
+        // Message de confirmation après envoi du formulaire (via l'iframe caché)
+        const hiddenIframe = document.querySelector('iframe[name="hidden_iframe"]');
+        let iframeFirstLoad = true;
+        if (hiddenIframe) {
+            hiddenIframe.addEventListener('load', function () {
+                // On ignore le tout premier chargement (about:blank)
+                if (iframeFirstLoad) {
+                    iframeFirstLoad = false;
+                    return;
+                }
+
+                const form = document.querySelector('.wedding-form');
+                if (form) {
+                    form.reset();
+                }
+
+                const nbMairie = document.getElementById('nb_mairie');
+                const nbHenne = document.getElementById('nb_henne');
+                const nbMariage = document.getElementById('nb_mariage');
+
+                if (nbMairie) nbMairie.value = 0;
+                if (nbHenne) nbHenne.value = 0;
+                if (nbMariage) nbMariage.value = 0;
+
+                alert('Merci 💕 Votre réponse a bien été enregistrée');
+            });
+        }
     </script>
     <iframe name="hidden_iframe" style="display:none;"></iframe>
 </body>
