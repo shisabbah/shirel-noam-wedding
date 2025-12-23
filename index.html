@@ -63,6 +63,9 @@
                     </div>
                     
                     <button type="submit" class="submit-btn">Envoyer</button>
+                    <p id="formMessage" class="form-message" style="display:none; margin-top: 10px; color: #4caf50; font-weight: bold;">
+                        Merci 💕 Votre réponse a bien été enregistrée.
+                    </p>
                 </form>
             </div>
         </div>
@@ -166,7 +169,10 @@
                 if (nbHenne) nbHenne.value = 0;
                 if (nbMariage) nbMariage.value = 0;
 
-                alert('Merci 💕 Votre réponse a bien été enregistrée');
+                const msg = document.getElementById('formMessage');
+                if (msg) {
+                    msg.style.display = 'block';
+                }
             });
         }
     </script>
