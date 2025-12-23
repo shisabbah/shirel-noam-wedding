@@ -142,14 +142,31 @@
         // Initialisation
         updatePages();
 
-        // Après clic sur "Envoyer", on redirige vers la page de confirmation plein écran
-        const submitBtn = document.querySelector('.submit-btn');
-        if (submitBtn) {
-            submitBtn.addEventListener('click', () => {
-                // Petit délai pour laisser l'envoi se faire vers Google Apps Script
-                setTimeout(() => {
-                    window.location.href = 'confirmation.html';
-                }, 500);
+        // Redirection vers la page de confirmation après que l'iframe ait fini de charger
+        const form = document.querySelector('.wedding-form');
+        const hiddenIframe = document.querySelector('iframe[name="hidden_iframe"]');
+        let pendingSubmit = false;
+
+        if (form && hiddenIframe) {
+            form.addEventListener('submit', () => {
+                pendingSubmit = true;
+            });
+
+            hiddenIframe.addEventListener('load', () => {
+                if (!pendingSubmit) return; // ignore les autres chargements éventuels
+                pendingSubmit = false;
+
+                // Reset des champs
+                form.reset();
+                const nbMairie = document.getElementById('nb_mairie');
+                const nbHenne = document.getElementById('nb_henne');
+                const nbMariage = document.getElementById('nb_mariage');
+                if (nbMairie) nbMairie.value = 0;
+                if (nbHenne) nbHenne.value = 0;
+                if (nbMariage) nbMariage.value = 0;
+
+                // Redirection vers la page de confirmation plein écran
+                window.location.href = 'confirmation.html';
             });
         }
     </script>
