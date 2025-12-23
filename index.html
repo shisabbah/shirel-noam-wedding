@@ -144,6 +144,9 @@
 
         // Message de confirmation après envoi du formulaire (via l'iframe caché)
         const hiddenIframe = document.querySelector('iframe[name="hidden_iframe"]');
+        const successOverlay = document.getElementById('successOverlay');
+        const successClose = document.getElementById('successClose');
+
         let iframeFirstLoad = true;
         if (hiddenIframe) {
             hiddenIframe.addEventListener('load', function () {
@@ -166,10 +169,26 @@
                 if (nbHenne) nbHenne.value = 0;
                 if (nbMariage) nbMariage.value = 0;
 
-                alert('Merci pour votre réponse 💕');
+                if (successOverlay) {
+                    successOverlay.style.display = 'flex';
+                } else {
+                    alert('Merci pour votre réponse 💕');
+                }
+            });
+        }
+
+        if (successClose && successOverlay) {
+            successClose.addEventListener('click', function () {
+                successOverlay.style.display = 'none';
             });
         }
     </script>
     <iframe name="hidden_iframe" style="display:none;"></iframe>
+    <div id="successOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); color:#fff; z-index:9999; align-items:center; justify-content:center; padding:20px; text-align:center;">
+        <div style="background:#222; padding:20px 24px; border-radius:10px; max-width:320px; width:100%; box-shadow:0 8px 20px rgba(0,0,0,0.4);">
+            <p style="margin:0 0 16px; font-size:18px; font-weight:600;">Merci pour votre réponse 💕</p>
+            <button id="successClose" style="padding:10px 16px; border:none; border-radius:6px; background:#f2c6d1; color:#222; font-weight:700; cursor:pointer; width:100%;">Fermer</button>
+        </div>
+    </div>
 </body>
 </html>
